@@ -8,49 +8,46 @@
 >
 > this project uses react internals, which can change at any time. we don't recommend depending on internals unless you really, _really_ have to. by proceeding, you acknowledge the risk of breaking your own code or apps that use your code.
 
-Call ordinary React hooks inside conditions without losing their state when the branch disappears. This experimental library replaces hook order with source callsites as hook identity.
-
-> [!IMPORTANT]
-> This library only works with React development renderers. It depends on private fields exposed to React DevTools and isn’t production-safe.
+Run conditional hooks in React (experiment)
 
 ## Install
 
 Install the package with your project’s package manager:
 
 ```bash
-ni react-conditional-hooks
+npm install react-conditional-hooks
 ```
 
 ## Use hooks inside a conditional branch
 
-This goblin portal puts `useState` and `useMemo` inside an `if` block:
+This app puts `useState` and `useMemo` inside a conditional branch:
 
 ```tsx
-import * as React from "react";
 import { installConditionalHooks } from "react-conditional-hooks";
+import { useMemo, useState, type ReactNode } from "react";
 
 installConditionalHooks();
 
-export const GoblinPortal = (): React.ReactNode => {
-  const [isOpen, setIsOpen] = React.useState(false);
+export const App = (): ReactNode => {
+  const [isPartyMode, setIsPartyMode] = useState(false);
 
-  if (!isOpen) {
-    return <button onClick={() => setIsOpen(true)}>Open goblin portal</button>;
+  if (!isPartyMode) {
+    return <button onClick={() => setIsPartyMode(true)}>Start party</button>;
   }
 
-  const [goblins, setGoblins] = React.useState(3);
-  const tribute = React.useMemo(() => "🥔".repeat(goblins), [goblins]);
+  const [ducks, setDucks] = useState(3);
+  const danceFloor = useMemo(() => "🦆".repeat(ducks), [ducks]);
   return (
     <section>
-      <p>{tribute} for the goblin council</p>
-      <button onClick={() => setGoblins(goblins + 1)}>Add goblin</button>
-      <button onClick={() => setIsOpen(false)}>Close portal</button>
+      <p>{danceFloor}</p>
+      <button onClick={() => setDucks(ducks + 1)}>Add duck</button>
+      <button onClick={() => setIsPartyMode(false)}>Stop party</button>
     </section>
   );
 };
 ```
 
-Open the portal, add a goblin, close it, and reopen it. The conditional `goblins` state resumes at its previous value. React normally rejects this pattern because the number of hooks changes between renders.
+Start the party, add a duck, stop it, and start it again. The conditional `ducks` state resumes at its previous value. React normally rejects this pattern because the number of hooks changes between renders.
 
 The runtime supports:
 
@@ -66,7 +63,7 @@ The runtime intercepts React’s dispatcher, derives an identity from each hook�
 
 ### React sends hook calls through a dispatcher
 
-Functions such as `React.useState` delegate to React’s current dispatcher. The runtime replaces the dispatcher property with a proxy and redirects supported hooks:
+Functions such as `useState` delegate to React’s current dispatcher. The runtime replaces the dispatcher property with a proxy and redirects supported hooks:
 
 ```ts
 const proxy = new Proxy(dispatcher, {

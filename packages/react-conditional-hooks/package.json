@@ -1,7 +1,7 @@
 {
   "name": "react-conditional-hooks",
   "version": "0.0.1",
-  "description": "Use ordinary React hooks inside conditional branches",
+  "description": "Run conditional hooks in React (experiment)",
   "keywords": [
     "bippy",
     "conditional hooks",
