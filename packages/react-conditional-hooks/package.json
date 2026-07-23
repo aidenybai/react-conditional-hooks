@@ -1,0 +1,72 @@
+{
+  "name": "react-conditional-hooks",
+  "version": "0.0.1",
+  "description": "Use ordinary React hooks inside conditional branches",
+  "keywords": [
+    "bippy",
+    "conditional hooks",
+    "react",
+    "react hooks",
+    "react internals"
+  ],
+  "homepage": "https://github.com/aidenybai/react-conditional-hooks#readme",
+  "bugs": {
+    "url": "https://github.com/aidenybai/react-conditional-hooks/issues"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "Aiden Bai",
+    "email": "aiden@million.dev"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aidenybai/react-conditional-hooks.git",
+    "directory": "packages/react-conditional-hooks"
+  },
+  "files": [
+    "dist",
+    "package.json",
+    "README.md",
+    "LICENSE"
+  ],
+  "type": "module",
+  "main": "dist/index.cjs",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
+    }
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "vp pack",
+    "dev": "vp pack --watch",
+    "test": "vp test",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "bippy": "^0.6.0"
+  },
+  "devDependencies": {
+    "@testing-library/react": "^16.1.0",
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "happy-dom": "^15.11.7",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4"
+  },
+  "peerDependencies": {
+    "react": ">=18.0.0"
+  }
+}
