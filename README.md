@@ -44,19 +44,11 @@ export const App = (): ReactNode => {
 };
 ```
 
-Start the party, add a duck, stop it, and start it again. The conditional `ducks` state resumes at its previous value. React normally rejects this pattern because the number of hooks changes between renders.
-
-The runtime supports:
-
-- **State**: `useState`, `useReducer`, and `useRef`
-- **Memoization**: `useMemo` and `useCallback`
-- **Effects**: `useEffect` and `useLayoutEffect`
-
-`useContext` continues through React’s dispatcher because context lookup belongs to the renderer.
+The conditional `ducks` state persists when party mode turns off and on.
 
 ## How conditional hooks work
 
-The runtime intercepts React’s dispatcher, derives an identity from each hook’s source location, and stores state beside the component Fiber. Bippy supplies renderer access and commit lifecycle events.
+[Bippy](https://github.com/aidenybai/bippy) is a toolkit for instrumenting React internals. This runtime uses Bippy to access renderers and commit events, then identifies hooks by source callsite and stores their state beside the component Fiber.
 
 ### React sends hook calls through a dispatcher
 
