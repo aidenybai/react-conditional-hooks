@@ -1,12 +1,9 @@
-# react-conditional-hooks
-
-[![version](https://img.shields.io/npm/v/react-conditional-hooks?style=flat&colorA=000000&colorB=000000)](https://npmjs.com/package/react-conditional-hooks)
-[![downloads](https://img.shields.io/npm/dt/react-conditional-hooks.svg?style=flat&colorA=000000&colorB=000000)](https://npmjs.com/package/react-conditional-hooks)
-
 > [!WARNING]
 > ⚠️⚠️⚠️ **this project may break production apps and cause unexpected behavior** ⚠️⚠️⚠️
 >
 > this project uses react internals, which can change at any time. we don't recommend depending on internals unless you really, _really_ have to. by proceeding, you acknowledge the risk of breaking your own code or apps that use your code.
+
+# react-conditional-hooks
 
 Run conditional hooks in React (experiment)
 
